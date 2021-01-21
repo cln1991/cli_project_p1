@@ -25,12 +25,7 @@ This is a very simple CLI that is pulling from an API.
 
 To use this CLI, simply type the name of the card you want! Here are some examples:
 
-7
-Blue-eyes White Dragon
-Dark Magician
-Elemental Hero Neos
-Merlin
-Starliege Paladynamo
+7, Blue-eyes White Dragon, Dark Magician, Elemental Hero Neos, Merlin, Starliege Paladynamo
 
 additionally this is not case sensitive.
 
