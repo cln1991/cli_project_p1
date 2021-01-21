@@ -1,4 +1,3 @@
-#put api in here so that the card class can call it
 require 'open-uri'
 require 'net/http'
 require 'cgi'
@@ -17,6 +16,5 @@ class YugiApi
         
         response = Net::HTTP.get_response(uri)
         response_hash = JSON.parse(response.body)
-        #binding.pry
     end
 end
