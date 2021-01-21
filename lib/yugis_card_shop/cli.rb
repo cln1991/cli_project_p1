@@ -28,10 +28,11 @@ module YugisCardShop
             puts "Name: #{card[0].name}"
             puts "Type: #{card[0].type}"
             puts "Desc: #{card[0].desc}"
-            puts "Atk: #{card[0].attack if card[0].attack}"
-            puts "Def: #{card[0].defense if card[0].defense}"
-            puts "Race: #{card[0].race if card[0].race}"
-            puts "Attribute: #{card[0].attribute if card[0].attribute}"
+            puts "Atk: #{card[0].attack}" if card[0].attack
+            puts "Def: #{card[0].defense}" if card[0].defense
+            puts "Level: #{card[0].level}" if card[0].level
+            puts "Race: #{card[0].race}" if card[0].race
+            puts "Attribute: #{card[0].attribute}" if card[0].attribute
             puts "----------"
             another_card
         end
