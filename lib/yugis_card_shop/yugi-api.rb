@@ -1,9 +1,3 @@
-require 'open-uri'
-require 'net/http'
-require 'cgi'
-require 'json'
-require 'pry'
-
 class YugiApi
 
     def initialize(card_name)

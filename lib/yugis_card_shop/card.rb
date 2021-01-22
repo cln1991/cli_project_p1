@@ -1,11 +1,11 @@
 class YugisCardShop::Card
-    require 'pry'
+    #require 'pry'
     attr_accessor :name, :type, :desc, :attack, :defense, :level, :race, :attribute
     
     @@all = []
 
     def initialize(data)
-        self.name = data[:name]
+        @name = data[:name]
         self.type = data[:type]
         self.desc = data[:desc]
         self.attack = data[:attack]
@@ -17,11 +17,12 @@ class YugisCardShop::Card
     end
 
     def save
+        
         self.class.all.push(self)
     end
 
     def self.all
-        @@all
+        return @@all
     end
 
     def self.create_card_info_from_hash(data)
@@ -35,7 +36,9 @@ class YugisCardShop::Card
         :race => data["data"][0]["race"],
         :attribute => data["data"][0]["attribute"]
         }
-        new(@card_data).save
+        self.new(@card_data).save
     end
 
+   # Iterators
+    # class method that returns all card objects that are type spells
 end

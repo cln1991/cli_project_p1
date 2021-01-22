@@ -39,6 +39,7 @@ module YugisCardShop
 
 
         def another_card
+            binding.pry
             puts "Are you looking for another card?"
             input = nil
             while input != "exit"
@@ -60,4 +61,4 @@ module YugisCardShop
             exit
         end
     end
-end
+end
