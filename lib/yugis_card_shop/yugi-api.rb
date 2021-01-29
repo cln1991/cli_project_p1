@@ -5,7 +5,7 @@ class YugiApi
     end
 
     def get_response
-        url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=#{CGI.escape(@query)}" #<-This is my API
+        url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=#{CGI.escape(@query)}"
         uri = URI.parse(url)
         
         response = Net::HTTP.get_response(uri)

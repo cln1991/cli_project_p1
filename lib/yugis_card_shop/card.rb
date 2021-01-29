@@ -40,9 +40,8 @@ class YugisCardShop::Card
     end
 
     def self.card_array
-        @x = @@all.sort_by do |card| card.name
-        end
-        @x.each do |card|
+        x = @@all.sort_by {|card| card.name}
+        x.each do |card|
             puts "Name: #{card.name}"
             puts "Type: #{card.type}"
             puts "Desc: #{card.desc}"
@@ -55,4 +54,18 @@ class YugisCardShop::Card
         end
     end
 
+    def self.card_select(inputs)
+        @result = @@all.select {|card| inputs == card.type}
+        @result.each do |card|
+            puts "Name: #{card.name}"
+            puts "Type: #{card.type}"
+            puts "Desc: #{card.desc}"
+            puts "Attack: #{card.attack}" if card.attack
+            puts "Defense: #{card.defense}" if card.defense
+            puts "Level: #{card.level}" if card.level
+            puts "Race: #{card.race}" if card.race
+            puts "Attribute: #{card.attribute}" if card.attribute
+            puts "------------"
+        end
+    end
 end
