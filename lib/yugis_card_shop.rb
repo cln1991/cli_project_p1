@@ -10,5 +10,3 @@ require 'net/http'
 require 'cgi'
 require 'json'
 require "pry"
-
-puts "loaded this file."

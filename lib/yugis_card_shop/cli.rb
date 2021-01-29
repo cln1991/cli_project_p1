@@ -3,6 +3,7 @@ module YugisCardShop
 
     class CLI #<- start here
         attr_accessor :card_name
+        @@i = 0
     
         def initialize
             puts "Welcome to the card shop!"
@@ -17,41 +18,41 @@ module YugisCardShop
         end
 
         def display_card_info
-            y_api = YugiApi.new(card_name)
-            response_hash = y_api.get_response
-            @card = Card.create_card_info_from_hash(response_hash)
+            @card = Card.create_card_info_from_hash(card_name)
             display_info(@card)
         end
 
         def display_info(card)
             puts "----------"
-            puts "Name: #{card[0].name}"
-            puts "Type: #{card[0].type}"
-            puts "Desc: #{card[0].desc}"
-            puts "Atk: #{card[0].attack}" if card[0].attack
-            puts "Def: #{card[0].defense}" if card[0].defense
-            puts "Level: #{card[0].level}" if card[0].level
-            puts "Race: #{card[0].race}" if card[0].race
-            puts "Attribute: #{card[0].attribute}" if card[0].attribute
+            puts "Name: #{card[@@i].name}"
+            puts "Type: #{card[@@i].type}"
+            puts "Desc: #{card[@@i].desc}"
+            puts "Atk: #{card[@@i].attack}" if card[@@i].attack
+            puts "Def: #{card[@@i].defense}" if card[@@i].defense
+            puts "Level: #{card[@@i].level}" if card[@@i].level
+            puts "Race: #{card[@@i].race}" if card[@@i].race
+            puts "Attribute: #{card[@@i].attribute}" if card[@@i].attribute
             puts "----------"
             another_card
         end
 
-
         def another_card
-            binding.pry
-            puts "Are you looking for another card?"
+            puts "Are you looking for another card or do you want me to show you what you have looked at again?"
             input = nil
             while input != "exit"
                 input = gets.strip.downcase
                 case input
                 when "yes"
-                    @card.clear
+                    @@i = @@i + 2
                     enter_card_name
                 when "no"
                     goodbye
+                when "show"
+                    puts "Here are the cards you have asked for:"
+                    Card.card_array
+                    another_card
                 else 
-                    puts "Sorry, was that a yes or a no?"
+                    puts "Sorry, was that a yes or no or show?"
                 end
             end
         end     
@@ -61,4 +62,4 @@ module YugisCardShop
             exit
         end
     end
-end
+end

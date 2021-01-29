@@ -2,4 +2,4 @@
 
 require './lib/yugis_card_shop'
 
-YugisCardShop::CLI.new.call
+YugisCardShop::CLI.new

@@ -1,5 +1,4 @@
 class YugisCardShop::Card
-    #require 'pry'
     attr_accessor :name, :type, :desc, :attack, :defense, :level, :race, :attribute
     
     @@all = []
@@ -13,32 +12,47 @@ class YugisCardShop::Card
         self.level = data[:level]
         self.race = data[:race]
         self.attribute = data[:attribute]
-        self.save
+        @@all << self
     end
 
-    def save
-        
+    def save    
         self.class.all.push(self)
     end
 
     def self.all
-        return @@all
+        @@all
     end
 
-    def self.create_card_info_from_hash(data)
+    def self.create_card_info_from_hash(card_name)
+        y_api = YugiApi.new(card_name)
+        response_hash = y_api.get_response
         @card_data = {
-        :name => data["data"][0]["name"],
-        :type => data["data"][0]["type"],
-        :desc => data["data"][0]["desc"],
-        :attack => data["data"][0]["atk"],
-        :defense => data["data"][0]["def"],
-        :level => data["data"][0]["level"],
-        :race => data["data"][0]["race"],
-        :attribute => data["data"][0]["attribute"]
+        :name => response_hash["data"][0]["name"],
+        :type => response_hash["data"][0]["type"],
+        :desc => response_hash["data"][0]["desc"],
+        :attack => response_hash["data"][0]["atk"],
+        :defense => response_hash["data"][0]["def"],
+        :level => response_hash["data"][0]["level"],
+        :race => response_hash["data"][0]["race"],
+        :attribute => response_hash["data"][0]["attribute"]
         }
-        self.new(@card_data).save
+        new(@card_data).save
     end
 
-   # Iterators
-    # class method that returns all card objects that are type spells
+    def self.card_array
+        @x = @@all.sort_by do |card| card.name
+        end
+        @x.each do |card|
+            puts "Name: #{card.name}"
+            puts "Type: #{card.type}"
+            puts "Desc: #{card.desc}"
+            puts "Attack: #{card.attack}" if card.attack
+            puts "Defense: #{card.defense}" if card.defense
+            puts "Level: #{card.level}" if card.level
+            puts "Race: #{card.race}" if card.race
+            puts "Attribute: #{card.attribute}" if card.attribute
+            puts "------------"
+        end
+    end
+
 end
